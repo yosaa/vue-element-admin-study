@@ -1,9 +1,7 @@
-import { asyncRoutes, constantRoutes } from '@/router'
-// import { constantRoutes } from '@/router'
+// import { asyncRoutes, constantRoutes } from '@/router'
+import { constantRoutes } from '@/router'
 /* Layout */
-import Layout from '@/layout'
-// import { getMenu } from '@/api/user'
-// import { getToken } from '@/utils/auth' // get token from cookie
+
 /**
  * Use meta.role to determine if the current user has permission
  * @param roles
@@ -50,82 +48,43 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({ commit }, roles) {
+  generateRoutes({ commit }, menu, roles) {
     return new Promise(resolve => {
-      const accessedRoutes = [{
-        path: '/table',
-        component: Layout,
-        redirect: '/table/complex-table',
-        name: 'Table',
-        meta: {
-          title: 'Table',
-          icon: 'table'
-        },
-        children: [
-          {
-            path: 'dynamic-table',
-            component: () => import('@/views/table/dynamic-table/index'),
-            name: 'DynamicTable',
-            meta: { title: 'Dynamic Table' }
-          },
-          {
-            path: 'drag-table',
-            component: () => import('@/views/table/drag-table'),
-            name: 'DragTable',
-            meta: { title: 'Drag Table' }
-          },
-          {
-            path: 'inline-edit-table',
-            component: () => import('@/views/table/inline-edit-table'),
-            name: 'InlineEditTable',
-            meta: { title: 'Inline Edit' }
-          },
-          {
-            path: 'complex-table',
-            component: () => import('@/views/table/complex-table'),
-            name: 'ComplexTable',
-            meta: { title: 'Complex Table' }
-          }
-        ]
-      }]
-
-      // let accessedRoutes = [
-      //   {
-      //     component: Layout,
-      //     path: "/staff",
-      //     icon: "icon-staff",
-      //     name: "员工管理",
-      //     id: 3,
-      //     children_ids: [15, 16],
-      //     meta: {
-      //       title: 'Table',
-      //       icon: 'table'
-      //     },
-      //     children: [{
-      //       id: 15,
-      //       path: "/staff/list",
-      //       name: "员工列表"
+      // const accessedRoutes = [{
+      //   path: '/staff',
+      //   component: Layout,
+      //   meta: {
+      //     title: '员工管理',
+      //     icon: 'table'
+      //   },
+      //   children: [
+      //     {
+      //       path: 'list',
+      //       meta: { title: '员工列表' }
       //     },
       //     {
-      //       id: 16,
-      //       path: "/staff/add",
-      //       name: "员工添加"
-      //     }]
-      //   }]
-      // let menu = new Promise((resolve, reject) => {
-      //   getMenu(getToken()).then(response => {
-      //     const { data } = response
-      //     resolve(data)
-      //   }).catch(error => {
-      //     reject(error)
+      //       path: 'add',
+      //       meta: { title: '员工添加' }
+      //     }
+      //   ]
+      // }]
+      console.log('##############', menu)
+      // const accessedRoutes = getMenu(getToken()).then(response => {
+      //   const { data } = response
+      //   data.map(i => {
+      //     i.component = Layout
+      //     i.meta = {
+      //       title: i.name,
+      //       icon: 'table'
+      //     }
+      //     i.children.map(j => {
+      //       j.meta = {
+      //         title: j.name
+      //       }
+      //     })
       //   })
       // })
-      // menu.map(i => {
-      //   i.meta = {
-      //     title: 'Table',
-      //     icon: 'table'
-      //   }
-      // })
+      const accessedRoutes = menu
       // let accessedRoutes
       // if (roles.includes('admin')) {
       //   accessedRoutes = asyncRoutes || []

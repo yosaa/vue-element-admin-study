@@ -1,6 +1,7 @@
 import { login, logout, getInfo, getMenu } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import Layout from '@/layout'
 
 const state = {
   token: getToken(),
@@ -81,11 +82,22 @@ const actions = {
   // get Menu
   getMenu({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getMenu(localStorage.getItem('uid')).then(response => {
+      getMenu(state.token).then(response => {
         const { data } = response
-        console.log(data)
+        data.map(i => {
+          i.component = Layout
+          i.meta = {
+            title: i.name,
+            icon: 'table'
+          }
+          i.children.map(j => {
+            j.meta = {
+              title: j.name
+            }
+          })
+        })
         localStorage.setItem('menu', data)
-        resolve()
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

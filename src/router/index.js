@@ -73,16 +73,31 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/table/complex-table',
+    // meta: {
+    //   title: 'Table',
+    //   icon: 'table'
+    // },
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        path: 'staff',
+        name: 'Demo工作台',
+        meta: { title: 'Demo工作台', affix: true }
       }
     ]
   }
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/table/complex-table',
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: () => import('@/views/dashboard/index'),
+  //       name: 'Dashboard',
+  //       meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // }
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -129,6 +144,24 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/staff',
+    component: Layout,
+    meta: {
+      title: '员工管理',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'list',
+        meta: { title: '员工列表' }
+      },
+      {
+        path: 'add',
+        meta: { title: '员工添加' }
+      }
+    ]
+  },
   {
     path: '/permission',
     component: Layout,
