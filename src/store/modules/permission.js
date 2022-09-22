@@ -50,47 +50,7 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, menu, roles) {
     return new Promise(resolve => {
-      // const accessedRoutes = [{
-      //   path: '/staff',
-      //   component: Layout,
-      //   meta: {
-      //     title: '员工管理',
-      //     icon: 'table'
-      //   },
-      //   children: [
-      //     {
-      //       path: 'list',
-      //       meta: { title: '员工列表' }
-      //     },
-      //     {
-      //       path: 'add',
-      //       meta: { title: '员工添加' }
-      //     }
-      //   ]
-      // }]
-      console.log('##############', menu)
-      // const accessedRoutes = getMenu(getToken()).then(response => {
-      //   const { data } = response
-      //   data.map(i => {
-      //     i.component = Layout
-      //     i.meta = {
-      //       title: i.name,
-      //       icon: 'table'
-      //     }
-      //     i.children.map(j => {
-      //       j.meta = {
-      //         title: j.name
-      //       }
-      //     })
-      //   })
-      // })
       const accessedRoutes = menu
-      // let accessedRoutes
-      // if (roles.includes('admin')) {
-      //   accessedRoutes = asyncRoutes || []
-      // } else {
-      //   accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      // }
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

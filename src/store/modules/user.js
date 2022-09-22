@@ -96,7 +96,7 @@ const actions = {
             }
           })
         })
-        localStorage.setItem('menu', data)
+
         resolve(data)
       }).catch(error => {
         reject(error)
