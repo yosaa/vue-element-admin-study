@@ -9,3 +9,12 @@ export function getStaff(query, token) {
     headers: { 'Authorization': 'Bearer ' + [token] }
   })
 }
+
+// 搜索微信用户列表
+export function getWXUserList(nickname, token) {
+  return request({
+    url: `/v1/users?nickname=${nickname}`,
+    method: 'get',
+    headers: { 'Authorization': 'Bearer ' + [token] }
+  })
+}
