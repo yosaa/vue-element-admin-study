@@ -22,18 +22,18 @@
     <div>
       <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
         <el-form-item label="姓名" prop="username">
-          <el-input v-model="ruleForm.uid" />
+          <el-input v-model="ruleForm.username" />
         </el-form-item>
         <el-form-item label="手机号" prop="cell">
           <el-input v-model="ruleForm.cell" />
         </el-form-item>
         <el-form-item label="部门" prop="department">
           <el-select v-model="ruleForm.department" placeholder="请选择部门">
-            <el-option label="研发部" value="shanghai" />
-            <el-option label="综合支持部" value="beijing" />
-            <el-option label="品牌运营部" value="beijing" />
-            <el-option label="电商" value="beijing" />
-            <el-option label="其他" value="beijing" />
+            <el-option label="研发部" />
+            <el-option label="综合支持部" />
+            <el-option label="品牌运营部" />
+            <el-option label="电商" />
+            <el-option label="其他" />
           </el-select>
         </el-form-item>
         <el-form-item label="职位" prop="position">
@@ -41,12 +41,12 @@
         </el-form-item>
         <el-form-item label="角色权限" prop="role_id">
           <el-radio-group v-model="ruleForm.role_id">
-            <el-radio label="管理员" value="1" />
-            <el-radio label="部门经理" value="2" />
-            <el-radio label="社群及运营" value="3" />
-            <el-radio label="线下场地免费" value="4" />
-            <el-radio label="人事行政" value="5" />
-            <el-radio label="供应链管理" value="6" />
+            <el-radio label="1">管理员</el-radio>
+            <el-radio label="2">部门经理</el-radio>
+            <el-radio label="3">社群及运营</el-radio>
+            <el-radio label="4">线下场地免费</el-radio>
+            <el-radio label="5">人事行政</el-radio>
+            <el-radio label="6">供应链管理</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { getWXUserList } from '@/api/staff'
+import { getWXUserList, postStaffInfo } from '@/api/staff'
 import { getToken } from '@/utils/auth'
 export default {
   data() {
@@ -72,17 +72,15 @@ export default {
         cell: '',
         department: '',
         position: '',
-        role_id: false,
-        type: [],
-        resource: ''
+        role_id: ''
       },
       rules: {
         name: [
           { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { trigger: 'blur' }
         ],
-        region: [
-          { required: true, message: '请选择活动区域', trigger: 'change' }
+        cell: [
+          { min: 11, max: 11, message: '请输入正确的手机号', required: true, trigger: 'change' }
         ],
         type: [
           { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
@@ -110,9 +108,10 @@ export default {
       })
     },
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(async(valid) => {
         if (valid) {
-          alert('submit!')
+          this.ruleForm.role_id = Number(this.ruleForm.role_id)
+          await postStaffInfo(this.ruleForm, getToken())
         } else {
           console.log('error submit!!')
           return false

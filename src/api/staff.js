@@ -18,3 +18,13 @@ export function getWXUserList(nickname, token) {
     headers: { 'Authorization': 'Bearer ' + [token] }
   })
 }
+
+// 新增员工
+export function postStaffInfo(body, token) {
+  return request({
+    url: `/v1/staff`,
+    method: 'post',
+    data: body,
+    headers: { 'Authorization': 'Bearer ' + [token] }
+  })
+}

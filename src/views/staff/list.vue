@@ -15,13 +15,14 @@
         <el-table-column prop="role_id" label="权限等级" />
         <el-table-column prop="created_at" label="创建时间" />
       </el-table>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="handleCurrentChange"
+      />
     </div>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="total"
-      @current-change="handleCurrentChange"
-    />
+
     <!-- <div id="container" /> -->
   </div>
 
@@ -71,10 +72,15 @@ export default {
 </script>
 
 <style lang=scss>
+.divBox {
+  color: rgb(255, 255, 255);
+}
+
 .box {
     display: flex;
     flex-direction: row;
     justify-content:flex-start ;
+
 }
 
 .el-dropdown {
