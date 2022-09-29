@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div>
-      <span class="el-form-item__label" style="width: 100px;">搜索微信昵称    </span>
+      <span class="el-form-item__label" style="width: 100px; bolder:700">搜索微信昵称    </span>
       <el-select
         v-model="nickname"
         placeholder="请选择"
@@ -81,12 +81,6 @@ export default {
         ],
         cell: [
           { min: 11, max: 11, message: '请输入正确的手机号', required: true, trigger: 'change' }
-        ],
-        type: [
-          { type: 'array', required: true, message: '请至少选择一个活动性质', trigger: 'change' }
-        ],
-        resource: [
-          { required: true, message: '请选择活动资源', trigger: 'change' }
         ]
       }
     }
@@ -131,5 +125,8 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content:flex-start ;
+    margin: 20px 20px 20px 20px;
+    background-Color: rgb(255, 255, 255);
+    padding:20px 5px 15px 20px;
 }
 </style>

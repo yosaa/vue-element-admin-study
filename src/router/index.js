@@ -102,6 +102,38 @@ export const constantRoutes = [
         meta: { title: '员工添加', noCache: true }
       }
     ]
+  },
+  {
+    path: '/store',
+    component: Layout,
+    name: '电商&供应链',
+    hidden: true,
+    children: [
+      {
+        path: 'goods',
+        component: () => import('@/views/store/goods'),
+        name: '商品',
+        meta: { title: '商品', noCache: true }
+      },
+      {
+        path: 'orders',
+        component: () => import('@/views/store/orders'),
+        name: '订单',
+        meta: { title: '订单', noCache: true }
+      },
+      {
+        path: 'stocks',
+        component: () => import('@/views/store/stocks'),
+        name: '库存',
+        meta: { title: '库存', noCache: true }
+      },
+      {
+        path: 'po',
+        component: () => import('@/views/store/po'),
+        name: '采购',
+        meta: { title: '采购', noCache: true }
+      }
+    ]
   }
   // {
   //   path: '/',

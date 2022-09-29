@@ -12,6 +12,6 @@ export default {
 
 <style>
 .Page {
-        background-Color: rgb(247, 234, 234);
+        background-Color: rgb(248, 246, 246);
     }
 </style>

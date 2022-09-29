@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="box">
+    <div class="searchBox">
       <span style="text-align: center;width:50px;margin:10px">姓名</span><el-input v-model="username" style="width:400px" placeholder="请输入姓名" />
       <span style="text-align: center;width:50px;margin:10px">手机号</span><el-input v-model="cell" style="width:400px" placeholder="请输入手机号" />
-      <el-button type="primary" @click="searchStaff">点击搜索</el-button>
+      <el-button style="margin-left:20px" type="primary" @click="searchStaff">点击搜索</el-button>
     </div>
 
-    <div>
+    <div class="listBox">
       <el-table :data="tableData" stripe style="width: 100%">
         <el-table-column prop="uid" label="UID" />
         <el-table-column prop="username" label="用户姓名" width="180" />
@@ -16,6 +16,7 @@
         <el-table-column prop="created_at" label="创建时间" />
       </el-table>
       <el-pagination
+        style="margin-top:20px"
         background
         layout="prev, pager, next"
         :total="total"
@@ -72,15 +73,20 @@ export default {
 </script>
 
 <style lang=scss>
-.divBox {
-  color: rgb(255, 255, 255);
-}
 
-.box {
+.searchBox {
     display: flex;
     flex-direction: row;
     justify-content:flex-start ;
+    margin: 20px 20px 20px 20px;
+    background-Color: rgb(255, 255, 255);
+    padding:20px 10px 15px 20px;
+}
 
+.listBox {
+    margin: 20px 20px 20px 20px;
+    background-Color: rgb(255, 255, 255);
+    padding:10px 5px 15px 20px;
 }
 
 .el-dropdown {
