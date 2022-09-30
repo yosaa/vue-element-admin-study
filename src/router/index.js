@@ -116,6 +116,11 @@ export const constantRoutes = [
         meta: { title: '商品', noCache: true }
       },
       {
+        path: 'goods_edit',
+        component: () => import('@/views/store/goods_edit'),
+        hidden: true
+      },
+      {
         path: 'orders',
         component: () => import('@/views/store/orders'),
         name: '订单',
